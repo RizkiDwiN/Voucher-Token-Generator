@@ -112,10 +112,12 @@
                 </tr>
             </thead>
             <tbody>
-                <?php 
+                <?php
                    $no = 1;
                    $sql = $koneksi->query("SELECT * FROM voucher");
                    while ($data = $sql->fetch_assoc()) {
+                   $id = urlencode(base64_encode($data['id_voucher']));
+                   
                 ?>
                 <tr>
                     <td><?php echo $no++; ?></td>
@@ -136,7 +138,7 @@
                     </td>
                     <td> <?php 
                             if($data['status'] == 0){
-                                echo "<a href='voucher-e.php?id=$data[id_voucher]' class='btn btn-outline-primary' name='claim'>Claim</a>";
+                                echo "<a href='voucher-e.php?id=$id' class='btn btn-outline-primary' name='claim'>Claim</a>";
                             }else{
                                 echo "";
                             }
